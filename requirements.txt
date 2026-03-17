@@ -1,1 +1,2 @@
-pytest>=7.0
+# bboxfixer has no external runtime dependencies.
+# All functionality uses the Python standard library only.

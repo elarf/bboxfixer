@@ -5,9 +5,7 @@
 # Build with:
 #   pyinstaller bboxfixer-gui.spec
 #
-# Or use the provided build_exe.bat (Windows) / build_exe.sh (Linux/Mac).
-
-block_cipher = None
+# Or use the provided build_exe.bat (Windows).
 
 a = Analysis(
     ['bboxfixer/__main_gui__.py'],
@@ -28,19 +26,15 @@ a = Analysis(
     hooksconfig={},
     runtime_hooks=[],
     excludes=[],
-    win_no_prefer_redirects=False,
-    win_private_assemblies=False,
-    cipher=block_cipher,
     noarchive=False,
 )
 
-pyz = PYZ(a.pure, a.zipped_data, cipher=block_cipher)
+pyz = PYZ(a.pure)
 
 exe = EXE(
     pyz,
     a.scripts,
     a.binaries,
-    a.zipfiles,
     a.datas,
     [],
     name='bboxfixer-gui',
