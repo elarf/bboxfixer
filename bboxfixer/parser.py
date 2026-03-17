@@ -1,7 +1,7 @@
 import xml.etree.ElementTree as ET
 from typing import Union
 
-from .models import Address, FreeLineText, Payment, Receipt, ReceiptItem, StornoReceipt
+from .xml_models import Address, FreeLineText, Payment, Receipt, ReceiptItem, StornoReceipt
 
 
 def _text(element: ET.Element, tag: str, default: str = "") -> str:

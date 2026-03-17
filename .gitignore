@@ -1,10 +1,3 @@
-__pycache__/
-*.py[cod]
-*.egg-info/
-dist/
-build/
-.pytest_cache/
-*.egg
 # Python
 __pycache__/
 *.py[cod]
@@ -34,3 +27,6 @@ htmlcov/
 
 # Output (generated at runtime)
 output/
+
+# PyInstaller
+*.spec.bak

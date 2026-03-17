@@ -1,111 +1,81 @@
 # bboxfixer
 
-A Python tool that generates Windows `.bat` files containing `curl` commands so that BBOX fiscal printer receipts and storno (void) documents can be reprinted.
 A tool for the **BBOX fiscal printer** that helps generating Windows `.bat` files so receipts and storno (cancellation) documents can be reprinted by running the generated bat files.
 
 ## Features
 
-- Reads receipt data from **CSV** or **JSON** input files
+- **Graphical user interface (GUI)** – enter receipt data, products and values, then click **Generate** to create bat files
+- **Downloadable EXE** – package the GUI as a standalone Windows executable (no Python installation required)
+- Reads receipt data from **CSV** or **JSON** input files (command-line mode)
 - Generates `.bat` files containing `curl` commands that:
   - **Reprint** an existing receipt by its fiscal number
   - **Storno** (cancel/reverse) a receipt by sending a negated copy to the printer
 - Configurable printer host and port
 - Custom storno reason text
 
+## GUI
+
+![Receipt Data tab](https://github.com/user-attachments/assets/6629b697-0a1e-4e0f-ac84-8fce574ca825)
+![Settings tab](https://github.com/user-attachments/assets/758efe89-a482-4774-b845-d8e52120027c)
+
+### Launching the GUI
+
+```bash
+bboxfixer-gui
+# or
+python -m bboxfixer.gui
+```
+
+The GUI has two tabs:
+
+**Receipt Data tab**
+- Fill in Receipt Number, Date, Cashier and Payment Method
+- Click **Add Item** to add products with name, quantity, unit price and tax rate
+- Edit or remove items with **Edit Item** / **Remove Item**
+- The running total is shown at the bottom
+
+**Settings tab**
+- Set the BBOX printer **Host** and **Port**
+- Choose the generation **Mode**: `both`, `reprint`, or `storno`
+- Set the **Storno Reason** text
+- Choose the **Output Directory** for generated bat files
+
+Click **Generate .bat File(s)** (bottom-right) to create the files.
+
+### Building a standalone EXE (Windows)
+
+You can distribute the GUI as a single `.exe` file using [PyInstaller](https://pyinstaller.org/).
+
+**Requirements:** Python 3.8+, `pip install pyinstaller`
+
+```bat
+REM From the repository root:
+build_exe.bat
+```
+
+Or manually:
+```bat
+pip install pyinstaller
+pyinstaller bboxfixer-gui.spec --clean --noconfirm
+```
+
+The executable is written to `dist\bboxfixer-gui.exe`.  
+Copy it to any Windows machine – no Python installation required.
+
 ## Requirements
 
 - Python 3.8+
-- `curl` available on the target Windows machine
+- `curl` available on the target Windows machine (to run the generated `.bat` files)
 
 ## Installation
 
 ```bash
-pip install -e .
 pip install .
 ```
 
-## Usage
+## Command-line Usage
 
 ```
-bboxfixer [--host HOST] [--port PORT] [--output-dir OUTPUT_DIR] xml_files...
-```
-
-### Arguments
-
-| Argument | Description | Default |
-|---|---|---|
-| `xml_files` | One or more BBOX XML files to process | *(required)* |
-| `--host` | Printer host | `localhost` |
-| `--port` | Printer port | `8080` |
-| `--output-dir` | Directory for output `.bat` files | Same directory as input file |
-
-### Examples
-
-Process a single file with defaults:
-```bash
-bboxfixer samples/receipt.xml
-```
-
-Process multiple files with a custom host/port:
-```bash
-bboxfixer --host 192.168.1.50 --port 9090 receipt.xml storno.xml
-```
-
-Write all `.bat` files to a specific output directory:
-```bash
-bboxfixer --output-dir /tmp/bats samples/receipt.xml samples/storno.xml
-```
-
-## Generated `.bat` file
-
-For an input file `receipt.xml` the tool generates `receipt.bat`:
-
-```bat
-@echo off
-echo Sending BBOX receipt to printer...
-curl -X POST "http://localhost:8080/api/printer/fiscal_receipt" ^
-  -H "Content-Type: text/xml;charset=UTF-8" ^
-  --data-binary @"%~dp0receipt.xml" ^
-  -o "%~dp0receipt_response.txt" ^
-  --silent --show-error
-echo Done. Response saved to receipt_response.txt.
-```
-
-Running the `.bat` file POSTs the XML to the printer and saves the server response to `<stem>_response.txt` in the same directory.
-
-## Supported document types
-
-| `RECEIPT_TYPE` | Description |
-|---|---|
-| `Receipt` | Standard fiscal receipt |
-| `Void` | Storno / void document |
-
-## Running tests
-
-```bash
-pip install pytest
-pytest
-```
-
-## Project structure
-
-```
-bboxfixer/
-├── bboxfixer/
-│   ├── __init__.py
-│   ├── models.py      # Dataclasses for receipt/storno data
-│   ├── parser.py      # XML → dataclass parsing
-│   ├── generator.py   # Dataclass → XML and .bat generation
-│   └── cli.py         # Command-line interface
-├── tests/
-│   ├── test_models.py
-│   ├── test_parser.py
-│   └── test_generator.py
-├── samples/
-│   ├── receipt.xml
-│   └── storno.xml
-├── pyproject.toml
-└── requirements.txt
 bboxfixer INPUT_FILE [options]
 ```
 
@@ -220,9 +190,34 @@ The tool maps Hungarian VAT percentages to BBOX tax group codes:
 | 5 % | 2 |
 | 0 % | 3 |
 
+## Project Structure
+
+```
+bboxfixer/
+├── bboxfixer/
+│   ├── __init__.py
+│   ├── models.py          # CSV/JSON receipt data models (Decimal-based)
+│   ├── xml_models.py      # XML protocol data models
+│   ├── parser.py          # BBOX XML → dataclass parsing
+│   ├── xml_generator.py   # Dataclass → BBOX XML and .bat generation
+│   ├── generator.py       # BatFileGenerator (reprint/storno bat files)
+│   ├── printer.py         # BBOX HTTP API payload builders
+│   ├── cli.py             # Command-line interface
+│   └── gui.py             # Tkinter graphical user interface
+├── tests/
+├── samples/
+│   ├── receipt.xml
+│   └── storno.xml
+├── bboxfixer-gui.spec     # PyInstaller spec for building .exe
+├── build_exe.bat          # Windows build script
+├── pyproject.toml
+└── requirements.txt
+```
+
 ## Development
 
 ```bash
 pip install pytest
 pytest tests/
 ```
+
