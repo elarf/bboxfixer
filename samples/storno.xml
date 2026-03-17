@@ -1,0 +1,39 @@
+<?xml version="1.0" ?>
+<BBOX_CMD>
+  <PRINTER>
+    <FISCAL_RECEIPT>
+      <RECEIPT_DATA>
+        <RECEIPT_TYPE>Void</RECEIPT_TYPE>
+        <TOTAL>1000</TOTAL>
+        <ADDRESS>
+          <COMPANY_NAME>MVM DOME</COMPANY_NAME>
+          <POSTAL_CODE>1091</POSTAL_CODE>
+          <CITY>Budapest</CITY>
+          <STREET>Ulloi</STREET>
+          <STREET_TYPE>a</STREET_TYPE>
+          <STREET_NUMBER>133-135</STREET_NUMBER>
+          <TAX_NUMBER>11111111233</TAX_NUMBER>
+        </ADDRESS>
+        <ORIGINAL_RECEIPT_NUMBER>NY/Y23900001/0080/00016</ORIGINAL_RECEIPT_NUMBER>
+        <DATE>2026.03.16</DATE>
+        <REGISTER_ID>S1</REGISTER_ID>
+        <ITEM>
+          <ITEM_TYPE>Item</ITEM_TYPE>
+          <NAME>Termék 5-ös áfa</NAME>
+          <UNIT_PRICE>1000</UNIT_PRICE>
+          <QUANTITY>1</QUANTITY>
+          <TOTAL>1000</TOTAL>
+          <UNIT>adag</UNIT>
+          <VAT_RATE>1</VAT_RATE>
+          <DISCOUNT>0</DISCOUNT>
+        </ITEM>
+        <PAYMENT>
+          <PAYMENT_TYPE>Cash</PAYMENT_TYPE>
+          <CURRENCY></CURRENCY>
+          <NAME>Forint</NAME>
+          <AMOUNT>1000</AMOUNT>
+        </PAYMENT>
+      </RECEIPT_DATA>
+    </FISCAL_RECEIPT>
+  </PRINTER>
+</BBOX_CMD>

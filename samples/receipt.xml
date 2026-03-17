@@ -1,0 +1,56 @@
+<?xml version="1.0" ?>
+<BBOX_CMD>
+  <PRINTER>
+    <FISCAL_RECEIPT>
+      <RECEIPT_DATA>
+        <RECEIPT_TYPE>Receipt</RECEIPT_TYPE>
+        <TOTAL>1000</TOTAL>
+        <IS_VOID>false</IS_VOID>
+        <ITEM>
+          <ITEM_TYPE>Item</ITEM_TYPE>
+          <NAME>Termék 5-ös áfa</NAME>
+          <UNIT_PRICE>1000</UNIT_PRICE>
+          <QUANTITY>1</QUANTITY>
+          <TOTAL>1000</TOTAL>
+          <UNIT>adag</UNIT>
+          <VAT_RATE>1</VAT_RATE>
+          <DISCOUNT>0</DISCOUNT>
+        </ITEM>
+        <FREE_LINE>
+          <FREE_LINE_TYPE>FreeLineText</FREE_LINE_TYPE>
+          <INDEX>-1</INDEX>
+          <TEXT>Fruitsys a vendeglato rendszer</TEXT>
+          <FONT>None</FONT>
+          <ALIGNMENT>CenterAligned</ALIGNMENT>
+        </FREE_LINE>
+        <FREE_LINE>
+          <FREE_LINE_TYPE>FreeLineText</FREE_LINE_TYPE>
+          <INDEX>-1</INDEX>
+          <TEXT>www.fruitsys.hu</TEXT>
+          <FONT>None</FONT>
+          <ALIGNMENT>CenterAligned</ALIGNMENT>
+        </FREE_LINE>
+        <FREE_LINE>
+          <FREE_LINE_TYPE>FreeLineText</FREE_LINE_TYPE>
+          <INDEX>-1</INDEX>
+          <TEXT>_____________________________</TEXT>
+          <FONT>None</FONT>
+          <ALIGNMENT>CenterAligned</ALIGNMENT>
+        </FREE_LINE>
+        <FREE_LINE>
+          <FREE_LINE_TYPE>FreeLineText</FREE_LINE_TYPE>
+          <INDEX>-1</INDEX>
+          <TEXT>10</TEXT>
+          <STYLE>Bold DoubleWidth DoubleHeight</STYLE>
+          <ALIGNMENT>CenterAligned</ALIGNMENT>
+        </FREE_LINE>
+        <PAYMENT>
+          <PAYMENT_TYPE>Cash</PAYMENT_TYPE>
+          <CURRENCY></CURRENCY>
+          <NAME>Készpénz</NAME>
+          <AMOUNT>1000</AMOUNT>
+        </PAYMENT>
+      </RECEIPT_DATA>
+    </FISCAL_RECEIPT>
+  </PRINTER>
+</BBOX_CMD>
