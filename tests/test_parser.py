@@ -2,7 +2,7 @@ import os
 
 import pytest
 
-from bboxfixer.models import Receipt, StornoReceipt
+from bboxfixer.xml_models import Receipt, StornoReceipt
 from bboxfixer.parser import parse_bbox_xml
 
 SAMPLES_DIR = os.path.join(os.path.dirname(__file__), "..", "samples")

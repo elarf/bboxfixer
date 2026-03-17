@@ -1,16 +1,10 @@
 [build-system]
-requires = ["setuptools>=61"]
 requires = ["setuptools>=68", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "bboxfixer"
 version = "0.1.0"
-description = "Generate bat files for reprinting BBOX fiscal printer receipts and storno documents"
-requires-python = ">=3.8"
-
-[tool.setuptools.packages.find]
-include = ["bboxfixer*"]
 description = "Tool for BBOX fiscal printer – generate bat files to reprint receipts and storno documents"
 readme = "README.md"
 requires-python = ">=3.8"
@@ -24,6 +18,7 @@ dependencies = []
 
 [project.scripts]
 bboxfixer = "bboxfixer.cli:main"
+bboxfixer-gui = "bboxfixer.gui:main"
 
 [tool.setuptools.packages.find]
 where = ["."]

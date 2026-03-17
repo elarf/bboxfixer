@@ -1,8 +1,11 @@
-from bboxfixer.models import Address, FreeLineText, Payment, Receipt, ReceiptItem, StornoReceipt
+from bboxfixer.xml_models import Address, FreeLineText, Payment
+from bboxfixer.xml_models import Receipt as XmlReceipt
+from bboxfixer.xml_models import ReceiptItem as XmlReceiptItem
+from bboxfixer.xml_models import StornoReceipt as XmlStornoReceipt
 
 
 def test_receipt_item():
-    item = ReceiptItem(
+    item = XmlReceiptItem(
         item_type="Item",
         name="Test item",
         unit_price="500",
@@ -60,7 +63,7 @@ def test_address():
 
 
 def test_receipt_defaults():
-    r = Receipt(total="500")
+    r = XmlReceipt(total="500")
     assert r.receipt_type == "Receipt"
     assert r.is_void is False
     assert r.items == []
@@ -69,7 +72,7 @@ def test_receipt_defaults():
 
 
 def test_storno_receipt_defaults():
-    s = StornoReceipt(total="500")
+    s = XmlStornoReceipt(total="500")
     assert s.receipt_type == "Void"
     assert s.address is None
     assert s.original_receipt_number == ""
@@ -80,9 +83,9 @@ def test_storno_receipt_defaults():
 
 
 def test_receipt_with_items():
-    item = ReceiptItem("Item", "Prod", "100", "3", "300", "kg", "2", "0")
+    item = XmlReceiptItem("Item", "Prod", "100", "3", "300", "kg", "2", "0")
     payment = Payment("Cash", "", "Cash", "300")
-    r = Receipt(total="300", items=[item], payments=[payment])
+    r = XmlReceipt(total="300", items=[item], payments=[payment])
     assert len(r.items) == 1
     assert len(r.payments) == 1
 """Tests for bboxfixer.models."""
