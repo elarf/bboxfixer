@@ -1,0 +1,6 @@
+receipt_number,date,cashier,payment_method,item_name,quantity,unit_price,tax_rate
+R001,2024-01-15,John Doe,cash,Coffee,2,1.50,27
+R001,2024-01-15,John Doe,cash,Sandwich,1,3.00,5
+R002,2024-01-16,Jane Smith,card,Tea,3,1.00,27
+R002,2024-01-16,Jane Smith,card,Cake,2,2.50,18
+R003,2024-01-17,John Doe,cash,Water,5,0.50,0
