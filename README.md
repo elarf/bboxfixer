@@ -77,6 +77,8 @@ pip install .
 
 ```
 bboxfixer INPUT_FILE [options]
+# or
+python -m bboxfixer INPUT_FILE [options]
 ```
 
 ### Options
@@ -196,6 +198,8 @@ The tool maps Hungarian VAT percentages to BBOX tax group codes:
 bboxfixer/
 ├── bboxfixer/
 │   ├── __init__.py
+│   ├── __main__.py        # Entry point for python -m bboxfixer
+│   ├── __main_gui__.py    # Entry point for the PyInstaller-built GUI exe
 │   ├── models.py          # CSV/JSON receipt data models (Decimal-based)
 │   ├── xml_models.py      # XML protocol data models
 │   ├── parser.py          # BBOX XML → dataclass parsing
@@ -217,7 +221,10 @@ bboxfixer/
 ## Development
 
 ```bash
-pip install pytest
+pip install -e .
+pip install -r requirements-dev.txt
 pytest tests/
 ```
+
+CI runs tests automatically on every push and pull request (Linux) and builds the Windows executable after tests pass.
 
