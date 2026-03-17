@@ -35,6 +35,7 @@ def main() -> None:
             continue
 
         output_dir = args.output_dir if args.output_dir is not None else os.path.dirname(os.path.abspath(xml_path))
+        os.makedirs(output_dir, exist_ok=True)
 
         try:
             bat_path = generate_bat_for_xml_file(xml_path, output_dir, args.host, args.port)
