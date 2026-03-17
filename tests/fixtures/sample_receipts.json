@@ -1,0 +1,22 @@
+[
+  {
+    "receipt_number": "R001",
+    "date": "2024-01-15",
+    "cashier": "John Doe",
+    "payment_method": "cash",
+    "items": [
+      {"name": "Coffee", "quantity": "2", "unit_price": "1.50", "tax_rate": "27"},
+      {"name": "Sandwich", "quantity": "1", "unit_price": "3.00", "tax_rate": "5"}
+    ]
+  },
+  {
+    "receipt_number": "R002",
+    "date": "2024-01-16",
+    "cashier": "Jane Smith",
+    "payment_method": "card",
+    "items": [
+      {"name": "Tea", "quantity": "3", "unit_price": "1.00", "tax_rate": "27"},
+      {"name": "Cake", "quantity": "2", "unit_price": "2.50", "tax_rate": "18"}
+    ]
+  }
+]

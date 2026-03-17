@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bboxfixer"
+version = "0.1.0"
+description = "Tool for BBOX fiscal printer – generate bat files to reprint receipts and storno documents"
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "MIT" }
+keywords = ["fiscal", "printer", "bbox", "receipt", "storno", "bat"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+dependencies = []
+
+[project.scripts]
+bboxfixer = "bboxfixer.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["bboxfixer*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
