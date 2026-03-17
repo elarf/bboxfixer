@@ -31,7 +31,7 @@ jobs:
         run: pip install pyinstaller>=6.0
 
       - name: Build executable
-        run: python -m pyinstaller bboxfixer-gui.spec --clean --noconfirm
+        run: pyinstaller bboxfixer-gui.spec --clean --noconfirm
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
