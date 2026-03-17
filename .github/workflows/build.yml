@@ -27,6 +27,9 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements-dev.txt
 
+      - name: Install PyInstaller
+        run: pip install pyinstaller>=6.0
+
       - name: Build executable
         run: python -m pyinstaller bboxfixer-gui.spec --clean --noconfirm
 
